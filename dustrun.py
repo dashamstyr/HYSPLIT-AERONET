@@ -25,25 +25,31 @@ Dalanzadgad = ('DAL',43.577222,104.419167)
 SACOL = ('SAC',35.946,104.137)
 Xiang_he = ('XHE',39.754,116.962)
 
-stations = [Saturna_Island, Chapais, Univ_Leth, Bratts_Lake]
+Aksu = ('Aksu',40.617,80.85)
+
+Ucluelet = ('UCL',48.917,-125.517)
+
+stations = [Ucluelet]
 
 #set heights
-heights = range(1000,10200,200)
+heights = [500,1500,6000]#range(150,8000,100)
 
 #set dates and times
-year = '10'
-month = '03'
-day = range(15,32)
-hour = range(0,24,6)
+year = '14'
+month = '05'
+day = ['01']#range(3,4)
+hour = ['23']#range(4,5)
+run_hours = '-168'
 
 totalruns = len(stations)*len(day)*len(hour)*len(heights)
 runs = 0
 
 #select meteorology files
-
+olddir=os.getcwd()
+os.chdir('C:\hysplit4\meteo')
 meteo_list = tools.get_files('Select Meteorology Files')
 meteo_files = meteo_list.split()
-
+os.chdir(olddir)
 #set output directory
 
 output_dir = tools.set_dir('Select Output Directory')
@@ -53,9 +59,7 @@ for s in stations:
         for h in hour:
             for z in heights:
                 start_time = [year,month,d,h]
-
-                run_hours = '-240'
-                    
+                
                 tools.control_single(s,start_time,run_hours,z,meteo_files,output_dir)
                 startupinfo = subprocess.STARTUPINFO()
                 startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW

@@ -22,7 +22,7 @@ def control_single(location,start_time,run_hours,height,meteo_files,output_dir):
     output_file = location[0]+year+month+day+hour+'_'+str(height)+'.txt'
     cont_file = open('CONTROL','w')
     cont_file.writelines(time_in+'\n'+'1\n'+latlonht+'\n'+str(run_hours)+'\n'+\
-                         '0\n10000\n'+str(len(meteo_files))+'\n')
+                         '0\n20000\n'+str(len(meteo_files))+'\n')
 
     for n in meteo_files:
         [meteo_path,meteo_filename] = os.path.split(n)
